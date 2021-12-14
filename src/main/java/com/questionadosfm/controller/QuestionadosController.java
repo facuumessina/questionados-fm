@@ -23,16 +23,16 @@ public class QuestionadosController {
 	QuestionadosfmService questionadosService;
 
 	@GetMapping("/next")
-	public ResponseEntity<Pregunta> traerPreguntaRandom() {
-		Pregunta proximaPregunta = questionadosService.traerPreguntaRandom();
+	public ResponseEntity<Pregunta> bringRandomQuestion() {
+		Pregunta proximaPregunta = questionadosService.bringRandomQuestion();
 		return ResponseEntity.ok(proximaPregunta);
 	}
 
 	@PostMapping("/verificaciones")
-	public ResponseEntity<RespuestaVerific> verificarRespuesta(
+	public ResponseEntity<RespuestaVerific> verifyAnswer(
 			@RequestBody RespuestaAVerificar respuestaAVerificar) {
 		RespuestaVerific respuestaVerificada = new RespuestaVerific();
-		if (questionadosService.verificarRespuesta(respuestaAVerificar.preguntaId, respuestaAVerificar.respuestaId)) {
+		if (questionadosService.verifyAnswer(respuestaAVerificar.preguntaId, respuestaAVerificar.respuestaId)) {
 			respuestaVerificada.esCorrecta = true;
 		} else {
 			respuestaVerificada.esCorrecta = false;

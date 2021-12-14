@@ -25,15 +25,15 @@ public class CategoriaController {
 	private CategoriaService categoriaService;
 
 	@GetMapping
-	public ResponseEntity<List<Categoria>> traerCategorias() {
-		return ResponseEntity.ok(categoriaService.traerCategorias());
+	public ResponseEntity<List<Categoria>> bringCategory() {
+		return ResponseEntity.ok(categoriaService.bringCategory());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> traerCategoriaPorId(@PathVariable Integer id) {
+	public ResponseEntity<?> bringCategoryById(@PathVariable Integer id) {
 		RespuestaGenerica respuesta = new RespuestaGenerica();
-		if (categoriaService.existePorId(id)) {
-			return ResponseEntity.ok(categoriaService.buscarCategoriaPorId(id));
+		if (categoriaService.existsById(id)) {
+			return ResponseEntity.ok(categoriaService.searchCategoryById(id));
 		} else {
 			respuesta.isOk = false;
 			respuesta.message = "The category doesn't exist";
@@ -42,9 +42,9 @@ public class CategoriaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> crearCategoria(@RequestBody Categoria categoria) {
+	public ResponseEntity<?> createCategoria(@RequestBody Categoria categoria) {
 		RespuestaGenerica respuesta = new RespuestaGenerica();
-		if (categoriaService.crearCategoria(categoria)) {
+		if (categoriaService.createCategory(categoria)) {
 			respuesta.id = categoria.getCategoriaId();
 			respuesta.isOk = true;
 			respuesta.message = "Category created successfully";
@@ -57,9 +57,9 @@ public class CategoriaController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> eliminarCategoriaPorId(@PathVariable Integer id) {
+	public ResponseEntity<?> deleteCategoryById(@PathVariable Integer id) {
 		RespuestaGenerica respuesta = new RespuestaGenerica();
-		if (categoriaService.eliminarCategoriaPorId(id)) {
+		if (categoriaService.deleteCategoryById(id)) {
 			respuesta.isOk = true;
 			respuesta.message = "The category was deleted";
 			return ResponseEntity.ok(respuesta);

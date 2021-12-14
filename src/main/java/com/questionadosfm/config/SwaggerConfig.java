@@ -28,7 +28,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo getApiInfo() {
-		return new ApiInfo("Questionados API", "Java Talent Camp", "1.0", "API",
+		return new ApiInfo("Questionados fmessina API", "Java Talent Camp", "1.0", "API",
 				new Contact("Facundo Messina", "fmessina", "dummy@example.com"), "LICENSE", "LICENSE URL",
 				Collections.emptyList());
 	}

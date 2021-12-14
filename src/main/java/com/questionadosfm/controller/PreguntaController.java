@@ -25,15 +25,15 @@ public class PreguntaController {
 	PreguntaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Pregunta>> traerPreguntas() {
-		return ResponseEntity.ok(service.traerPreguntas());
+	public ResponseEntity<List<Pregunta>> bringQuestions() {
+		return ResponseEntity.ok(service.bringQuestions());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> buscarPreguntaPorId(@PathVariable Integer id) {
+	public ResponseEntity<?> searchQuestionById(@PathVariable Integer id) {
 		RespuestaGenerica respuesta = new RespuestaGenerica();
-		if (service.existePorId(id)) {
-			return ResponseEntity.ok(service.buscarPreguntaPorId(id));
+		if (service.existsById(id)) {
+			return ResponseEntity.ok(service.searchQuestionById(id));
 		} else {
 			respuesta.isOk = false;
 			respuesta.message = "The question doesn't exist";
@@ -42,10 +42,10 @@ public class PreguntaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> crearPregunta(@RequestBody PreguntaInfo preguntaNueva) {
+	public ResponseEntity<?> createQuestion(@RequestBody PreguntaInfo preguntaNueva) {
 		RespuestaGenerica respuesta = new RespuestaGenerica();
 		Pregunta pregunta = new Pregunta();
-		if (service.crearPregunta(preguntaNueva.enunciado, preguntaNueva.categoriaId, preguntaNueva.opciones) != null) {
+		if (service.createQuestion(preguntaNueva.enunciado, preguntaNueva.categoriaId, preguntaNueva.opciones) != null) {
 			respuesta.id = pregunta.getPreguntaId();
 			respuesta.isOk = true;
 			respuesta.message = "The question was successfully created";

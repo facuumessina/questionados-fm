@@ -15,11 +15,11 @@ public class CategoriaService {
 	@Autowired
 	CategoriaRepository categoriaRepository;
 
-	public List<Categoria> traerCategorias() {
+	public List<Categoria> bringCategory() {
 		return categoriaRepository.findAll();
 	}
 
-	public Categoria buscarCategoriaPorId(Integer categoriaId) {
+	public Categoria searchCategoryById(Integer categoriaId) {
 		Optional<Categoria> resultado = categoriaRepository.findById(categoriaId);
 		Categoria categoria = null;
 		if (resultado.isPresent()) {
@@ -28,29 +28,29 @@ public class CategoriaService {
 		return categoria;
 	}
 
-	public boolean crearCategoria(Categoria categoria) {
-		if (existe(categoria.getNombre())) {
+	public boolean createCategory(Categoria categoria) {
+		if (exists(categoria.getNombre())) {
 			return false;
 		}
 		categoriaRepository.save(categoria);
 		return true;
 	}
 
-	public boolean existePorId(int id) {
+	public boolean existsById(int id) {
 		Categoria categoria = categoriaRepository.findById(id);
 		return categoria != null;
 	}
 
-	public boolean existe(String nombre) {
+	public boolean exists(String nombre) {
 		Categoria categoria = categoriaRepository.findByNombre(nombre);
 		return categoria != null;
 	}
 
-	public boolean eliminarCategoriaPorId(Integer id) {
+	public boolean deleteCategoryById(Integer id) {
 		boolean res = false;
-		if (existePorId(id)) {
+		if (existsById(id)) {
 			categoriaRepository.deleteById(id);
-			res = (!existePorId(id));
+			res = (!existsById(id));
 		}
 		return res;
 	}

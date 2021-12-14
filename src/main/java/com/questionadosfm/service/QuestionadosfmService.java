@@ -13,18 +13,18 @@ public class QuestionadosfmService {
 	@Autowired
     PreguntaService preguntaService;
 
-    public Pregunta traerPreguntaRandom() {
+    public Pregunta bringRandomQuestion() {
 
-        List<Pregunta> todasLasPreguntas = preguntaService.traerPreguntas();
+        List<Pregunta> todasLasPreguntas = preguntaService.bringQuestions();
         int min = 1;
         int max = todasLasPreguntas.size();
         int random = (int) (Math.random() * ((max - min) +1)) + min;
 
         return todasLasPreguntas.get(random - 1);   
     }
-    public boolean verificarRespuesta(Integer preguntaId, Integer respuestaId) {
+    public boolean verifyAnswer(Integer preguntaId, Integer respuestaId) {
 
-        Pregunta pregunta = preguntaService.buscarPreguntaPorId(preguntaId);
+        Pregunta pregunta = preguntaService.searchQuestionById(preguntaId);
 
         for(Respuesta respuesta : pregunta.getOpciones()) {
 

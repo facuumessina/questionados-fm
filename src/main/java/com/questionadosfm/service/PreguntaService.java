@@ -20,11 +20,11 @@ public class PreguntaService {
 	@Autowired
 	CategoriaService categoriaService;
 
-	public List<Pregunta> traerPreguntas() {
+	public List<Pregunta> bringQuestions() {
 		return preguntaRepository.findAll();
 	}
 
-	public Pregunta buscarPreguntaPorId(Integer preguntaId) {
+	public Pregunta searchQuestionById(Integer preguntaId) {
 		Optional<Pregunta> resultado = preguntaRepository.findById(preguntaId);
 		if (resultado.isPresent()) {
 			return resultado.get();
@@ -32,11 +32,11 @@ public class PreguntaService {
 		return null;
 	}
 
-	public Pregunta crearPregunta(String enunciado, Integer categoriaId, List<Respuesta> opciones) {
+	public Pregunta createQuestion(String enunciado, Integer categoriaId, List<Respuesta> opciones) {
 		if (!existePreguntaPorPregunta(enunciado)) {
 			Pregunta pregunta = new Pregunta();
 			pregunta.setEnunciado(enunciado);
-			Categoria categoria = categoriaService.buscarCategoriaPorId(categoriaId);
+			Categoria categoria = categoriaService.searchCategoryById(categoriaId);
 			pregunta.setCategoria(categoria);
 			for (Respuesta respuesta : opciones) {
 				respuesta.setPregunta(pregunta);
@@ -47,7 +47,7 @@ public class PreguntaService {
 		return null;
 	}
 
-	public boolean existePorId(int id) {
+	public boolean existsById(int id) {
 		Pregunta pregunta = preguntaRepository.findById(id);
 		return pregunta != null;
 	}

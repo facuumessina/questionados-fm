@@ -42,7 +42,7 @@ public class CategoriaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> createCategoria(@RequestBody Categoria categoria) {
+	public ResponseEntity<?> createCategory(@RequestBody Categoria categoria) {
 		RespuestaGenerica respuesta = new RespuestaGenerica();
 		if (categoriaService.createCategory(categoria)) {
 			respuesta.id = categoria.getCategoriaId();
